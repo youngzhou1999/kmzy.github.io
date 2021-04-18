@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 马尔科夫决策过程的预测和控制
-categories: [cate1, cate2]
+categories: intro to RL
 description: MDP's prediction and control
 keywords: Reinforcement Learning
 ---
@@ -34,6 +34,7 @@ $$
 V^{\pi}(s)=\mathbb{E}[R_{t+1}+\gamma{V^{\pi}(s_{t+1})}|s_t=s] \\
 Q^{\pi}(s,a)=\mathbb{E}[R_{t+1}+\gamma{Q^{\pi}(s_{t+1},a_{t+1})|s_t=s,a_t=a}]
 $$
+
 利用式(1)和(2)可以得出$V(s)$与$V(s')$和$Q(s,a)$与$Q(s',a')$的计算关系，具体地：
 
 - 将(1)代入(2)：
@@ -61,10 +62,12 @@ $$
 $$
 V^*(s)=\max_{\pi}V^{\pi}(s)
 $$
+
 其表示所有的策略$\pi$的状态价值的最大值。此时，最优策略表达式为：
 $$
 \pi^*{(s)}=\arg\max_{\pi}V^{\pi}(s)
 $$
+
 显然，最有状态价值函数是唯一的，但最优策略可能不唯一。
 
 最优策略与最优动作-状态价值函数有密切的关系，我们可以通过最优动作-状态价值函数直接获得最优策略，具体地：
@@ -73,6 +76,7 @@ $$
 0,\quad\rm{otherwise}
 \end{cases}
 $$
+
 因此，一旦知道了最优动作-价值函数，就可以得到最优策略。
 
 > 4. 策略迭代（Policy Iteration）
@@ -81,10 +85,12 @@ $$
 $$
 \pi'=\rm{greedy}(V^{\pi})
 $$
+
 策略迭代的一次迭代流程为：
 $$
 \pi\to{V}\to{Q}\to{\arg\max_{\pi}Q}\to\pi'
 $$
+
 策略迭代的计算表达式为：
 
 - 策略评估——利用贝尔曼期望方程计算动作-价值函数
@@ -116,6 +122,7 @@ $$
 $$
 Q^*(s,a)=R(s,a)+\gamma\sum_{s'\in{S}}P(s'|s,a)\max_a{Q^*(s',a')}
 $$
+
 同理，将(2)代入(1)也可以得到$V^*(s)$和$V^*(s')$的计算关系：
 $$
 V^*(s)=\max_a\bigg({R(s,a)+\gamma\sum_{s'\in{S}}P(s'|s,a)V^*(s')}\bigg)
@@ -127,6 +134,7 @@ $$
 $$
 V(s)\gets{\max_{a}\bigg(R(s,a)+\gamma\sum_{s'\in{S}}P(s'|s,a)V(s')\bigg)}
 $$
+
 对于价值迭代，其不需要显示地计算策略，只有状态价值函数的迭代过程。如果需要最优策略时，只需要将上述迭代过程展开，即添加动作-状态函数，最后迭代过程结束后利用动作-价值函数即可得到最优策略，具体过程为：
 
 ```python
