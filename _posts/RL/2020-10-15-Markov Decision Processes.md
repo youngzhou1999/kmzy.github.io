@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 马尔科夫决策过程的预测和控制
-categories: intro to RL
+categories: RL
 description: MDP's prediction and control
 keywords: Reinforcement Learning
 ---
@@ -13,7 +13,8 @@ keywords: Reinforcement Learning
 贝尔曼方程由MRP（Markov Reward Process）中得出，描述状态之间价值函数的计算关系：
 $$
 V(s)=R+\gamma\sum_{s'\in{S}}{P(s'|s)}V(s')
-$$
+$$ 
+
 此为强化学习的一个重要基石。
 
 > 2. 贝尔曼期望方程（Bellman Expectation Equation）
