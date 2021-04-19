@@ -5,7 +5,7 @@ categories: NMM
 description: Numerical malculation method
 keywords: Newton Iteration
 ---
-A simple proof problem in course numerical malculation method.
+本文是数值计算方法课程的一道简单的证明习题。它表明，在目标函数满足一定条件下，存在一种改进的牛顿法使得在用于求解方程或优化问题时至少是二阶收敛的。
 
 #### 题目：
 

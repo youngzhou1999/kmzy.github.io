@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 马尔科夫决策过程的预测和控制
+title: 马尔科夫决策过程的评估和控制
 categories: RL
 description: MDP's prediction and control
 keywords: Reinforcement Learning
 ---
-
+本文将介绍马尔科夫决策过程（Markov Decision Processes）的评估与过程。在此之前，首先会介绍贝尔曼方程（Bellman Equation），并由此得到在已知环境转移的情况下，评估一个MDP的策略评估（Policy Evaluation）算法，以及求解一个MDP的策略迭代（Policy Iteration）和价值迭代（Value Iteration）算法。
 ## MDP（Markov Decision Process）
 
 > 1. 贝尔曼方程（Bellman Equation）
