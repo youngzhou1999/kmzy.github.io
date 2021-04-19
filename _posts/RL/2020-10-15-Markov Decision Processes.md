@@ -10,7 +10,7 @@ keywords: Reinforcement Learning
 
 ## MDP（Markov Decision Process）
 
-> 1. 贝尔曼方程（Bellman Equation）
+#### 1. 贝尔曼方程（Bellman Equation）
 
 贝尔曼方程由MRP（Markov Reward Process）中得出，描述状态之间价值函数的计算关系：
 
@@ -20,7 +20,7 @@ $$
 
 此为强化学习的一个重要基石。
 
-> 2. 贝尔曼期望方程（Bellman Expectation Equation）
+#### 2. 贝尔曼期望方程（Bellman Expectation Equation）
 
 在MDP中，引入了动作$a$，对应的策略函数$\pi$和动作-价值函数（Q函数），$\pi(s,a)$表示在当前状态$s$执行动作$a$的概率大小，$Q(s,a)$表示在当前状态$s$执行动作$a$可以获得价值。
 
@@ -55,7 +55,7 @@ $$
 Q^{\pi}(s,a)=R(s,a)+\gamma\sum_{s'\in{S}}P(s'|s,a)\sum_{a'\in{A}}\pi(a'|s')Q^{\pi}(s',a')
 $$
 
-> 3. 策略评估（Policy Evaluation）
+#### 3. 策略评估（Policy Evaluation）
 
 使用贝尔曼期望方程来评价一个策略的价值。
 
@@ -89,7 +89,7 @@ $$
 
 因此，一旦知道了最优动作-价值函数，就可以得到最优策略。
 
-> 4. 策略迭代（Policy Iteration）
+#### 4. 策略迭代（Policy Iteration）
 
 策略迭代用于MDP的控制过程，策略迭代分为两个步骤，策略评估和策略提升。策略评估即上述的过程——利用策略$\pi$计算出状态价值函数。策略提升为贪心地选择当前最优的策略，即
 
@@ -119,7 +119,7 @@ $$
 
 Shutton书中有关于此贪心的提升为单调递增的证明，具体见76页。
 
-> 5. 贝尔曼最优方程（Bellman Optimality Equation）
+#### 5. 贝尔曼最优方程（Bellman Optimality Equation）
 
 当上述策略迭代过程收敛即达到稳态后，此时状态间满足的关系即为贝尔曼最优方程。其表达式为：
 
@@ -143,7 +143,7 @@ $$
 V^*(s)=\max_a\bigg({R(s,a)+\gamma\sum_{s'\in{S}}P(s'|s,a)V^*(s')}\bigg)
 $$
 
-> 6. 价值迭代（Value Iteration）
+#### 6. 价值迭代（Value Iteration）
 
 由上述贝尔曼最优方程，我们可以直接得到$V^*(s)$和$V*(s')$的关系。价值迭代的原理为：直接利用此关系迭代价值函数，即假设MDP处于稳态。其迭代关系为：
 
@@ -164,7 +164,7 @@ for s in S:
 	pi(s) = arg max_{a} Q(s,a)
 ```
 
-> 7. 总结（Summary）
+#### 7. 总结（Summary）
 
 - 策略迭代与价值迭代
 

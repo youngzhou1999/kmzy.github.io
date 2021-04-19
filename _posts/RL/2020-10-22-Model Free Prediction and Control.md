@@ -14,14 +14,14 @@ keywords: Reinforcement Learning
 
 上一篇文章中求解MDP的方法都需要知道MDP的环境参数，即转移矩阵$P$和收益信号$R$。但实际上很难知道MDP的参数或计算时很复杂，为此，需要考虑Model-free的方法来求解。
 
-#### 1. Model-free模型的预测
+### 1. Model-free模型的预测
 
 Model-free模型的预测：在不知道模型参数的情况下，估计给定当前策略$\pi$下的期望的回报。主要有以下两种方法：
 
 - 蒙特卡洛策略估计
 - 时序差分学习（Temporal-Difference-learning）
 
-> 1. 蒙特卡洛策略评估（Monte-Carlo Policy Evaluation）
+#### 1. 蒙特卡洛策略评估（Monte-Carlo Policy Evaluation）
 
 蒙特卡洛策略评估算法的主要思想为：通过采样来估计期望回报。具体地，通过智能体与环境不断交互来产生轨迹，计算出每个轨迹的实际回报，最后取平均，计算方式如下：
 
@@ -58,7 +58,7 @@ $$
 
 由大数定理，当$N(s)\to\infin$时，$V(s)\to{V^{\pi}(s)}$。
 
-> 2. 增长均值（Incremental Mean）
+#### 2. 增长均值（Incremental Mean）
 
 增长均值是一个很重要的技巧，它把累计的均值转变为当前的均值与上次的均值之间的计算关系。其推导的关系如下：
 
@@ -87,7 +87,7 @@ $$
 V(s_t)=V(s_t)+\alpha(G_{i,t}-V(s_t))
 $$
 
-> 3. 动态规划算法与蒙特卡洛算法用于策略评估的比较（Comparison Between DP and MC）
+#### 3. 动态规划算法与蒙特卡洛算法用于策略评估的比较（Comparison Between DP and MC）
 
 - 不同之处
 
@@ -107,7 +107,7 @@ $$
 
 首先，MC不需要知道MDP的参数也可以工作，它是纯采样的一种算法；其次，MC的计算更简单，特别是当MDP很大的时候，状态数和转移矩阵$P$会变得很大，计算复杂；最后，MC算法在估计单个状态的价值函数时，不会影响到其他状态的价值函数，换句话说，计算一个状态的价值函数和其他状态是独立的，因为它不需要自举。
 
-> 4. TD-learning
+#### 4. TD-learning
 
 时序差分学习（TD-learning）是介于DP和MC之间的一种算法，其有几个特点：
 
@@ -141,14 +141,14 @@ $$
 
 4. TD-error：为向前走收益于当前状态价值函数的差，即$R_{t+1}+\gamma{V(s_{t+1})}-V(s_t)$
 
-> 5. TD-learning和MC的比较（Comparison Between TD-learning and MC）
+#### 5. TD-learning和MC的比较（Comparison Between TD-learning and MC）
 
 - TD-learning可以在线学习，只要有采集到的数据即可以更新，而MC必须等到整个幕结束才能更新
 - TD-learning可以从不完整的序列来学习，而MC不可以，其必须要到达幕的终态
 - TD-learning可以在连续的（non-terminating）环境工作，而MC只能在分幕（episodic）的环境工作
 - TD-learning显示出了马尔可夫性质（Markov Property），在马尔可夫性的环境中更有效；而MC没有显示马尔可夫性，故在非马尔可夫性的环境中更有效
 
-> 6. n步时序差分学习（n-step TD-learning）
+#### 6. n步时序差分学习（n-step TD-learning）
 
 上述的TD-learning是最简单的一种情况，即往前走一步。$n$步TD-learning为往前走$n$步，其介于TD(0)与MC之间，我们可以通过控制$n$来实现到TD(0)与MC的转变。
 
@@ -174,7 +174,7 @@ $$
 V(s_t)\gets{V(s_t)+\alpha\big(\textcolor{red}{G_t^n}-V(s_t)\big)}
 $$
 
-> 7. 三种算法的比较（Comparison Between DP, MC and TD）
+#### 7. 三种算法的比较（Comparison Between DP, MC and TD）
 
 - 是否需要自举和采样
 
@@ -203,11 +203,11 @@ $$
     V(s_t)\gets{V(s_t)+\alpha\Big(R_{t+1}+\gamma{V(s_{t+1})}-V(s_t)\Big)}
     $$
 
-#### 2. Model-free模型的控制
+### 2. Model-free模型的控制
 
 在model-free的模型下，没有收益信号$R$和转移矩阵$P$，而之前两种MDP的控制算法即策略迭代和价值迭代都依赖与这两个变量，因此这两种算法不能在model-free的模型下使用。
 
-> 1. 广义策略迭代（Generalized Policy Iteration）
+#### 1. 广义策略迭代（Generalized Policy Iteration）
 
 广义策略迭代包括两个同时进行的相互作用的流程，一个做策略评估，一个做策略提升，但两者可以以任意的流程交替进行。当然，在强化学习中，广义策略迭代值代所有让策略评估和策略提升相互作用的一般思路。其示意图如下：
 <center>
@@ -236,7 +236,7 @@ Loop forever(for each episode):
             pi(s_t) = argmax_a(Q(s_t, a))
 ```
 
-> 2. $\varepsilon$-greedy
+#### 2. $\varepsilon$-greedy
 
 $\varepsilon$-greedy是强化学习一个重要的技巧，它让搜索未知过程在探索与利用当前最优中得到一定的平衡。其表达形式如下：
 
@@ -252,7 +252,7 @@ $$
 
 $\varepsilon$-greedy的提升是单调的，即可以满足$V^{\pi'}(s)\ge{V^\pi}(s)$对任意策略成立。具体证明见Shutton书第100页。
 
-> 3. 广义蒙特卡洛迭代（Generalized Monte Carlo iteration）
+#### 3. 广义蒙特卡洛迭代（Generalized Monte Carlo iteration）
 
 借助$\varepsilon$-greedy，可以得到广义蒙特卡洛迭代算法，其框架如下：
 
@@ -280,7 +280,7 @@ loop:
     pi_k = eps_greedy(Q)
 ```
 
-> 4. 蒙特卡洛与时序差分在预测和控制上的比较（Comparison Between MC and TD on Prediction and Control）
+#### 4. 蒙特卡洛与时序差分在预测和控制上的比较（Comparison Between MC and TD on Prediction and Control）
 
 相对于MC，TD-learning有几点优势：
 
@@ -290,14 +290,14 @@ loop:
 
 因此，通常利用TD来求解MDP控制问题更优。
 
-> 5. 广义TD-learning（Generalized TD-learning）
+#### 5. 广义TD-learning（Generalized TD-learning）
 
 广义的TD-learning即为将传统的TD-learning应用到动作-状态价值函数即Q函数，同时使用$\varepsilon$-greedy做策略提升。根据TD-target/TD-error的选取不同，有两种常见的算法：
 
 1. Sarsa算法
 2. Q-learning算法
 
-> 6. Sarsa
+#### 6. Sarsa
 
 SARAS算法的原理为：使用$\varepsilon$-greedy执行一步，并自举Q函数。其过程为：
 
@@ -356,7 +356,7 @@ $$
 Q(s_t,a_t)\gets{Q(s_t,a_t)}+\alpha\Big(\textcolor{red}{q_t^n}-Q(s_t,a_t)\Big)
 $$
 
-> 7. 在轨学习和离轨学习（On-policy and Off-policy Learning）
+#### 7. 在轨学习和离轨学习（On-policy and Off-policy Learning）
 
 在轨学习（on-policy learning）指从策略$\pi$收集到的经验来学习策略$\pi$，只有一个策略。在轨学习通过表现不是最优，即它的表现会相对保守，因为它会去探索所有可能的动作，所以需要使用$\varepsilon$-greedy算法来逐渐减小探索的可能性。
 
@@ -373,7 +373,7 @@ $$
 2. 可以从人类或其他智能体的观测中学习（即把他们当成行为策略$\mu$）
 3. 可以重复使用旧策略产生的轨迹
 
-> 8. Q-leaning
+#### 8. Q-leaning
 
 Q-learning是一种离轨学习算法，它的灵感/原理来自于贝尔曼最优方程，即区别于Sarsa，它在第二次选取动作时，不去真正地执行动作，而是假想一个动作来执行。它的表达式如下：
 
@@ -421,7 +421,7 @@ Repeat(for each episode):
 until s is terminal
 ```
 
-> 9. Sarsa算法与Q-learning算法的比较（Comparision Between Sarsa and TD-learning）
+#### 9. Sarsa算法与Q-learning算法的比较（Comparision Between Sarsa and TD-learning）
 
 - 在轨学习和离轨学习
 
@@ -450,7 +450,7 @@ $$
 </center>
 
 
-> 10. DP算法和TD算法在无模型MDP的总结（Summary Betwwen DP and TD in Model-free MDP）
+#### 10. DP算法和TD算法在无模型MDP的总结（Summary Betwwen DP and TD in Model-free MDP）
 
 对于DP算法，在无模型MDP中，传统的策略迭代算法无法再适用，因此使用Q函数来做广义策略迭代。
 
