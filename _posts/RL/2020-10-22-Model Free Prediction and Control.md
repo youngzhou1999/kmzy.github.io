@@ -30,7 +30,7 @@ $$
 其中，$\tau$为从策略$\pi$中采样产生的样本轨迹，$G_t$为时序累计衰减的收益和，其表达式为：
 
 $$
-G_t=R_t+\gamma{R_{t+1}}+\cdots=\sum_{k=t}^{\infinity}\gamma^{k}R_k
+G_t=R_t+\gamma{R_{t+1}}+\cdots=\sum_{k=t}^{\infin}\gamma^{k}R_k
 $$
 
 蒙特卡洛策略评估有几点不足：
@@ -54,19 +54,19 @@ $$
 	4. Value is estimated by mean return v(s) = S(s) / N(s)
 ```
 
-由大数定理，当$N(s)\to\infinity$时，$V(s)\to{V^{\pi}(s)}$。
+由大数定理，当$N(s)\to\infin$时，$V(s)\to{V^{\pi}(s)}$。
 
 > 2. 增长均值（Incremental Mean）
 
 增长均值是一个很重要的技巧，它把累计的均值转变为当前的均值与上次的均值之间的计算关系。其推导的关系如下：
 
 $$
-\begin{align}
+\begin{aligned}
 \mu_t&=\frac{1}{t}\sum_{j=1}^{t}x_j \\
 &=\frac{1}{t}(\sum_{j=1}^{t-1}x_j+x_t) \\
 &=\frac{1}{t}\big((t-1)\mu_{t-1}+x_t\big) \\
 &=\mu_{t-1}+\frac{1}{t}(x_t-\mu_{t-1})
-\end{align}
+\end{aligned}
 $$
 
 利用增长均值，可以得到增长版的蒙特卡洛策略估计算法，其流程如下：
@@ -208,7 +208,7 @@ $$
 
 广义策略迭代包括两个同时进行的相互作用的流程，一个做策略评估，一个做策略提升，但两者可以以任意的流程交替进行。当然，在强化学习中，广义策略迭代值代所有让策略评估和策略提升相互作用的一般思路。其示意图如下：
 
-![image-20210409151640707](blog\image-20210409151640707.png)
+![image-20210409151640707](/images/posts/blog/image-20210409151640707.png)
 
 以蒙特卡洛版本为例，广义策略迭代基于动作-状态价值函数，来做策略迭代，其包含两个过程：
 
@@ -387,10 +387,10 @@ $$
 而对于行为策略，可以让它完全随机，但是一种更好的方式是使用$\varepsilon$-greedy算法来平衡探索与利用。因此，Q-learning的计算式可以表示如下：
 
 $$
-\begin{align}
+\begin{aligned}
 Q(s_t,a_t)&\gets{Q(s_t,a_t)+\alpha{[R_{t+1}+\gamma{Q\Big(s_{t+1},\arg\max_{a'}Q(s_{t+1},a')\Big)}-Q(s_t,a_t)]}}\\
 &\gets{Q(s_t,a_t)+\alpha{\Big(\textcolor{red}{R_{t+1}+\gamma\max_{a'}Q(s_{t+1},a')}-Q(s_t,a_t)}\Big)}
-\end{align}
+\end{aligned}
 $$
 
 上式中红色的部分即为Q-learning的TD-target。Q-learning的算法框架如下所示：
@@ -440,7 +440,7 @@ $$
 
 两种算法的迭代备份图如下：
 
-![image-20210409151111429](blog\image-20210409151111429.png)
+![image-20210409151111429](/images/posts/blog/image-20210409151111429.png)
 
 > 10. DP算法和TD算法在无模型MDP的总结（Summary Betwwen DP and TD in Model-free MDP）
 
@@ -496,6 +496,6 @@ $$
 
 时序差分学习随搜索深度与宽度变化情况如下图所示：
 
-![image-20210409153454873](blog\image-20210409153454873.png)
+![image-20210409153454873](/images/posts/blog/image-20210409153454873.png)
 
 可以看到，当深度加深后，TD逐渐演化为MC算法；当宽度增加后，TD逐渐演化为DP算法。
