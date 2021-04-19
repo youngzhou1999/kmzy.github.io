@@ -7,10 +7,10 @@ description: Model free's prediction and control
 keywords: Reinforcement Learning
 
 ---
-本文将介绍在不知道马尔科夫决策过程环境转移时，MDP的评估和控制。
+本文将介绍在不知道马尔科夫决策过程环境转移时，MDP的评估和控制。在无模型时MDP评估算法主要有两大类：蒙特卡洛策略估计（Monte-Carlo Policy Evaluation）和时序差分学习（Temperal-Difference Learning）。而对于控制问题，将引入广义策略迭代（Generalized Policy Iteration）思想，并介绍上述两种算法的广义版本，即广义蒙特卡洛迭代（Generalized Monte-Carlo iteration），Sarsa和Q-Learning。
 ## Model Free Method
 
-上述的求解MDP的方法都需要知道MDP的环境参数，即转移矩阵$P$和收益信号$R$。但实际上很难知道MDP的参数或计算时很复杂，为此，需要考虑Model-free的方法来求解。在无模型时MDP评估算法主要有两大类：蒙特卡洛策略估计（Monte-Carlo Policy Evaluation）和时序差分学习（Temperal-Difference Learning）。而对于控制问题，将引入广义策略迭代（Generalized Policy Iteration）思想，并介绍上述两种算法的广义版本，即广义蒙特卡洛迭代（Generalized Monte-Carlo iteration），Sarsa和Q-Learning。
+上一篇文章中求解MDP的方法都需要知道MDP的环境参数，即转移矩阵$P$和收益信号$R$。但实际上很难知道MDP的参数或计算时很复杂，为此，需要考虑Model-free的方法来求解。
 
 #### 1. Model-free模型的预测
 
