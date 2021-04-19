@@ -175,15 +175,17 @@ $$
 > 7. 三种算法的比较（Comparison Between DP, MC and TD）
 
 - 是否需要自举和采样
+<center>
 
 |               | DP          | MC          | TD                 |
 | ------------- | ----------- | ----------- | ------------------ |
 | Bootstrapping | YES（pure） | NO          | YES（combination） |
 | Sampling      | NO          | YES（pure） | YES（combination） |
-
+</center>
 - 更新计算表达式
 
     - DP
+
         $$
         V(s_t)\gets{\mathbb{E_{\pi}}[G_t|s_t=s]}={\mathbb{E_{\pi}}[R_{t+1}+\gamma{V(s_{t+1})}|s_t=s]}
         $$
@@ -207,8 +209,9 @@ $$
 > 1. 广义策略迭代（Generalized Policy Iteration）
 
 广义策略迭代包括两个同时进行的相互作用的流程，一个做策略评估，一个做策略提升，但两者可以以任意的流程交替进行。当然，在强化学习中，广义策略迭代值代所有让策略评估和策略提升相互作用的一般思路。其示意图如下：
-
+<center>
 ![image-20210409151640707](/images/posts/blog/image-20210409151640707.png)
+</center>
 
 以蒙特卡洛版本为例，广义策略迭代基于动作-状态价值函数，来做策略迭代，其包含两个过程：
 
@@ -439,8 +442,9 @@ Q(s_t,a_t)\gets{Q(s_t,a_t)}+\alpha\Big(\textcolor{red}{R_{t+1}+\gamma\max_{a}{Q(
 $$
 
 两种算法的迭代备份图如下：
-
+<center>
 ![image-20210409151111429](/images/posts/blog/image-20210409151111429.png)
+</center>
 
 > 10. DP算法和TD算法在无模型MDP的总结（Summary Betwwen DP and TD in Model-free MDP）
 
@@ -495,7 +499,8 @@ $$
 其中，$x\gets^{\alpha}y$表示$x=x+\alpha(y-x)$。
 
 时序差分学习随搜索深度与宽度变化情况如下图所示：
-
+<center>
 ![image-20210409153454873](/images/posts/blog/image-20210409153454873.png)
+</center>
 
 可以看到，当深度加深后，TD逐渐演化为MC算法；当宽度增加后，TD逐渐演化为DP算法。
