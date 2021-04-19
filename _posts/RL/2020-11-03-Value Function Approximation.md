@@ -473,7 +473,7 @@ $$
 
 下面是关于卷积神经网络处理图像时数据变化的笔记内容。
 
-### convolution layer
+###### convolution layer
 
 input shape: $W\times{H}\times{D}$
 
@@ -498,7 +498,7 @@ $$
 
 in the output, the $d$-th depth silce (of size $W'\times{H'}$) is the result of performing a valid convolution of the $d$-th filter over the input with a stride of $S$, and the offset by $d$-th bias.
 
-### pooling layer
+###### pooling layer
 
 input shape: $W\times{H}\times{D}$
 
