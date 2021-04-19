@@ -12,6 +12,8 @@ keywords: Set division, complexity theory
   
 ---
 本文介绍了集合划分问题的求解算法以及时间复杂度证明。
+
+
 ## 集合划分问题
 
 
