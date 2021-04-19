@@ -30,7 +30,7 @@ $$
 其中，$\tau$为从策略$\pi$中采样产生的样本轨迹，$G_t$为时序累计衰减的收益和，其表达式为：
 
 $$
-G_t=R_t+\gamma{R_{t+1}}+\cdots=\sum_{k=t}^{\infin}\gamma^{k}R_k
+G_t=R_t+\gamma{R_{t+1}}+\cdots=\sum_{k=t}^{\infinity}\gamma^{k}R_k
 $$
 
 蒙特卡洛策略评估有几点不足：
@@ -54,7 +54,7 @@ $$
 	4. Value is estimated by mean return v(s) = S(s) / N(s)
 ```
 
-由大数定理，当$N(s)\to\infin$时，$V(s)\to{V^{\pi}(s)}$。
+由大数定理，当$N(s)\to\infinity$时，$V(s)\to{V^{\pi}(s)}$。
 
 > 2. 增长均值（Incremental Mean）
 
