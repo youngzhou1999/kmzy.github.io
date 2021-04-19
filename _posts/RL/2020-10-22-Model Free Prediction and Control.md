@@ -379,7 +379,7 @@ $$
 Q(s_t,a_t)\gets{Q(s_t,a_t)+\alpha{\Big(R_{t+1}+\gamma{Q(s_{t+1},a')}-Q(s_t,a_t)\Big)}}
 $$
 
-其中，$a'\sim\pi(.|s_t)$。
+其中，$a'\sim\pi(\.|s_t)$。
 
 在实际使用TD-learning时，需要让行为策略和目标策略都有提升，因此可以对目标策略做贪心，即
 
