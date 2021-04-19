@@ -471,8 +471,8 @@ screen and (max--moz-device-pixel-ratio:2) {
 
 .markdown-body table {
     display: block;
-    width: 60%;
-    margin-left: auto;
+    width: 80%;
+    margin-left: 20;
     margin-right: auto;
     overflow: auto;
     word-break: normal;
