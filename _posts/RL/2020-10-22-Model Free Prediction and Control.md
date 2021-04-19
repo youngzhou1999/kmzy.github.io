@@ -22,13 +22,17 @@ Model-free模型的预测：在不知道模型参数的情况下，估计给定�
 > 1. 蒙特卡洛策略评估（Monte-Carlo Policy Evaluation）
 
 蒙特卡洛策略评估算法的主要思想为：通过采样来估计期望回报。具体地，通过智能体与环境不断交互来产生轨迹，计算出每个轨迹的实际回报，最后取平均，计算方式如下：
+
 $$
 V^{\pi}(s)=\mathbb{E}_{\tau\sim{\pi}}[G_t|s_t=s]
 $$
+
 其中，$\tau$为从策略$\pi$中采样产生的样本轨迹，$G_t$为时序累计衰减的收益和，其表达式为：
+
 $$
 G_t=R_t+\gamma{R_{t+1}}+\cdots=\sum_{k=t}^{\infin}\gamma^{k}R_k
 $$
+
 蒙特卡洛策略评估有几点不足：
 
 - 首先，蒙特卡洛策略评估只适用带幕（episode）的MDP模型，因为其采样需要一个终态（terminal）
@@ -55,6 +59,7 @@ $$
 > 2. 增长均值（Incremental Mean）
 
 增长均值是一个很重要的技巧，它把累计的均值转变为当前的均值与上次的均值之间的计算关系。其推导的关系如下：
+
 $$
 \begin{align}
 \mu_t&=\frac{1}{t}\sum_{j=1}^{t}x_j \\
@@ -63,6 +68,7 @@ $$
 &=\mu_{t-1}+\frac{1}{t}(x_t-\mu_{t-1})
 \end{align}
 $$
+
 利用增长均值，可以得到增长版的蒙特卡洛策略估计算法，其流程如下：
 
 ```python
@@ -74,6 +80,7 @@ $$
 ```
 
 进一步地，可以把$\frac{1}{n}$替换为一个超参数$\alpha$，即为学习率或步长，替换后的更新过程如下：
+
 $$
 V(s_t)=V(s_t)+\alpha(G_{i,t}-V(s_t))
 $$
@@ -83,10 +90,13 @@ $$
 - 不同之处
 
 动态规划算法利用贝尔曼期望方程估计状态价值函数，需要自举（bootstrapping），且需要知道MDP的参数：
+
 $$
 V_i(s)\gets{\sum_{a\in{A}}\pi(a|s)\bigg(R(s,a)+\gamma\sum_{s'\in{S}}P(s'|s,a)V_{i-1}(s')\bigg)}
 $$
+
 蒙特卡洛算法通过采样，使用增长均值来估计状态价值函数：
+
 $$
 V(s_t)=V(s_t)+\alpha(G_{i,t}-V(s_t))
 $$
@@ -112,13 +122,17 @@ TD-learning算法的框架如下：
 2. 最简单的TD-learning TD(0)：表示仅仅向前迭代一步，对比MC是走完整个幕
 
 使用向前走了一步的收益来更新状态价值函数，计算方式如下：
+
 $$
 V(s_t)\gets{V(s_t)+\alpha\bigg(\textcolor{red}{R_{t+1}+\gamma{V(s_{t+1})}}-V(s_t)\bigg)}
 $$
+
 对比MC算法，其更新方式为：
+
 $$
 V(s_t)\gets{V(s_t)+\alpha\bigg(\textcolor{red}{G_{i,t}}-V(s_t)\bigg)}
 $$
+
 其中$i$表示为第$i$幕。
 
 3. TD-target：为向前走一步的衰减的、自举的收益，即$R_{t+1}+\gamma{V(s_{t+1})}$
@@ -143,14 +157,17 @@ $$
 考虑$n=2$，此时回报为$G_t^2=R_{t+1}+\gamma{R_{t+2}+\gamma^2V(s_{t+2})}$
 
 类似于此，我们得到$n$步回报的定义如下：
+
 $$
 G_t^n=R_{t+1}+\gamma{R_{t+2}}+\gamma^2{R_{t+3}}+\cdots+\gamma^{n-1}{R_{t+n}}+\gamma^n{V(s_{t+n})}
 $$
+
 前$n-1$项表示样本的回报，第$n$项表示自举之前的状态价值函数。特别地，当$n\to\infin$时，$n$步回报即变为MC中的累计回报$G_t$。
 
 2. 利用$G_t^n$更新状态价值函数
 
 基于上述的$n$步回报$G_t^n$，可以得到$n$步TD的更新表达式如下：
+
 $$
 V(s_t)\gets{V(s_t)+\alpha\big(\textcolor{red}{G_t^n}-V(s_t)\big)}
 $$
@@ -191,7 +208,7 @@ $$
 
 广义策略迭代包括两个同时进行的相互作用的流程，一个做策略评估，一个做策略提升，但两者可以以任意的流程交替进行。当然，在强化学习中，广义策略迭代值代所有让策略评估和策略提升相互作用的一般思路。其示意图如下：
 
-![image-20210409151640707](D:\noch\github\youngzhou1999.github.io\images\posts\blog\image-20210409151640707.png)
+![image-20210409151640707](blog\image-20210409151640707.png)
 
 以蒙特卡洛版本为例，广义策略迭代基于动作-状态价值函数，来做策略迭代，其包含两个过程：
 
@@ -217,6 +234,7 @@ Loop forever(for each episode):
 > 2. $\varepsilon$-greedy
 
 $\varepsilon$-greedy是强化学习一个重要的技巧，它让搜索未知过程在探索与利用当前最优中得到一定的平衡。其表达形式如下：
+
 $$
 \pi(a|S)=
 \begin{cases}
@@ -224,6 +242,7 @@ $$
 \varepsilon/|A|,\quad\rm{otherwise}
 \end{cases}
 $$
+
 意义为：以概率$\varepsilon$选取随机的动作，以概率$1-\varepsilon$选取当前最优动作。
 
 $\varepsilon$-greedy的提升是单调的，即可以满足$V^{\pi'}(s)\ge{V^\pi}(s)$对任意策略成立。具体证明见Shutton书第100页。
@@ -276,13 +295,17 @@ loop:
 > 6. Sarsa
 
 SARAS算法的原理为：使用$\varepsilon$-greedy执行一步，并自举Q函数。其过程为：
+
 $$
 \rm{state}\to\rm{action}\to\rm{reward}\to\rm{state}\to\rm{action}
 $$
+
 这也是其名字的由来。考虑其最简单的形式即$Sarsa(0)$，其更新表达式如下：
+
 $$
 Q(s_t,a_t)\gets{Q(s_t,a_t)}+\alpha\Big(\textcolor{red}{R_{t+1}+\gamma{Q(s_{t+1},a_{t+1})}}-Q(s_t,a_t)\Big)
 $$
+
 可以看到，SARSA算法的TD-target为$\delta_{t}=R_{t+1}+\gamma{Q(s_{t+1,a_{t+1}})}$。Sarsa算法的计算框架如下：
 
 ```python
@@ -317,10 +340,13 @@ $n=1$时，即为上述的Sarsa(0)，有$q_t^1=R_{t+1}+\gamma{Q(s_{t+1},a_{t+1})
 $n=2$时，同理有$q_t^2=R_{t+1}+\gamma{R_{t+2}}+\gamma^2{Q(s_{t+2},a_{t+2})}$
 
 因此，可以得到执行$n$步时的Q函数回报为：
+
 $$
 q_t^n=R_{t+1}+\gamma{R_{t+2}+\cdots+\gamma^{n-1}R_{t+n}+\gamma^n{Q(s_{t+n},a_{t+n})}}
 $$
+
 前面$n-1$项表示累计的衰减的回报，第$n$项表示自举的Q函数。特别地，当$n\to\infin$时，上式转变为MC的期望回报$G$。因此，可以得到$n$步Sarsa的计算表达式为：
+
 $$
 Q(s_t,a_t)\gets{Q(s_t,a_t)}+\alpha\Big(\textcolor{red}{q_t^n}-Q(s_t,a_t)\Big)
 $$
@@ -330,10 +356,12 @@ $$
 在轨学习（on-policy learning）指从策略$\pi$收集到的经验来学习策略$\pi$，只有一个策略。在轨学习通过表现不是最优，即它的表现会相对保守，因为它会去探索所有可能的动作，所以需要使用$\varepsilon$-greedy算法来逐渐减小探索的可能性。
 
 离轨学习（off-policy learning）有两个不同策略，一个是目标策略$\pi$，其表示正在训练的策略，它最终会变为最优的策略；另一个是行为策略$\mu$，其表示相对更具有探索性的策略，用于产生轨迹。算法思想为：从策略$\mu$产生的样本中学习策略$\pi$。其执行过程为：
+
 $$
 \rm{follow\ \mu(a|s)\ to\ collect\ data:\ }(s_1,a_1,r_2,\cdots,s_t)\sim\mu\\
 \rm{upudate\ \pi\ using\ (s_1,a_1,r_2,\cdots,s_t) }
 $$
+
 离轨学习有几点优势：
 
 1. 在探索策略即$\mu$的引导下，目标策略$\pi$会达到最优策略
@@ -343,22 +371,28 @@ $$
 > 8. Q-leaning
 
 Q-learning是一种离轨学习算法，它的灵感/原理来自于贝尔曼最优方程，即区别于Sarsa，它在第二次选取动作时，不去真正地执行动作，而是假想一个动作来执行。它的表达式如下：
+
 $$
 Q(s_t,a_t)\gets{Q(s_t,a_t)+\alpha{\Big(R_{t+1}+\gamma{Q(s_{t+1},a')}-Q(s_t,a_t)\Big)}}
 $$
+
 其中，$a'\sim\pi(.|s_t)$。
 
 在实际使用TD-learning时，需要让行为策略和目标策略都有提升，因此可以对目标策略做贪心，即
+
 $$
 \pi{(s_{t+1})}=\arg\max_{a'}Q(s_{t+1},a')
 $$
+
 而对于行为策略，可以让它完全随机，但是一种更好的方式是使用$\varepsilon$-greedy算法来平衡探索与利用。因此，Q-learning的计算式可以表示如下：
+
 $$
 \begin{align}
 Q(s_t,a_t)&\gets{Q(s_t,a_t)+\alpha{[R_{t+1}+\gamma{Q\Big(s_{t+1},\arg\max_{a'}Q(s_{t+1},a')\Big)}-Q(s_t,a_t)]}}\\
 &\gets{Q(s_t,a_t)+\alpha{\Big(\textcolor{red}{R_{t+1}+\gamma\max_{a'}Q(s_{t+1},a')}-Q(s_t,a_t)}\Big)}
 \end{align}
 $$
+
 上式中红色的部分即为Q-learning的TD-target。Q-learning的算法框架如下所示：
 
 ```python
@@ -415,6 +449,7 @@ $$
 - 预测
 
 预测仍然是使用迭代策略评估算法，即使用贝尔曼期望方程，其表达式如下：
+
 $$
 V(s)\gets{\mathbb{E}[R+\gamma{V(s')}|s]}
 $$
@@ -422,18 +457,23 @@ $$
 - 控制
 
 使用Q函数可以做广义的策略迭代和价值迭代。对于策略迭代，其表达式如下：
+
 $$
 Q(s,a)\gets{\mathbb{E}[R+\gamma{Q(s',a')}|s,a]}
 $$
+
 对于价值迭代，其表达式如下：
+
 $$
 Q(s,a)\gets{\mathbb{E}[R+\gamma\max_{a'}{Q(s',a')}|s,a]}
 $$
+
 对于TD算法：
 
 - 预测
 
 预测时，TD算法介于MC和DP之间，只往前走$n$步，考虑$n=1$的情况，其表达式为：
+
 $$
 V(s)\gets^\alpha{R+\gamma{V(s')}}
 $$
@@ -441,13 +481,17 @@ $$
 - 控制
 
 同样，使用Q函数做广义的控制，基于贝尔曼期望方程和贝尔曼最优方程，衍生出两种算法。第一种为在轨学习的Sarsa算法，其更新表达式为：
+
 $$
 Q(s,a)\gets^{\alpha}{R+\gamma{Q(s',a')}}
 $$
+
 第二种为离轨学习的Q-learning算法，其更新表达式为：
+
 $$
 Q(s,a)\gets^{\alpha}{R+\gamma\max_{a'}{Q(s',a')}}
 $$
+
 其中，$x\gets^{\alpha}y$表示$x=x+\alpha(y-x)$。
 
 时序差分学习随搜索深度与宽度变化情况如下图所示：
