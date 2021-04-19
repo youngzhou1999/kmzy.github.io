@@ -30,9 +30,9 @@ $$
 3. 决策树（Decision Tree）
 4. 最近邻（Nearest Neighbor）
 
-其中，前两种近似函数属于可微函数，利用此性质可以很好地进行优化。
+其中，前两种近似函数属于可微函数，利用此性质可以很好地进行优化。例如梯度下降算法。
 
-> 1. 梯度下降（Gradient Descend）
+#### 梯度下降（Gradient Descend）
 
 1. 目标（Objective）
 
@@ -64,7 +64,7 @@ $$
 
 ### 1. 价值函数的评估（VFA Evaluation）
 
-> 2. 已知价值函数（假设）（Value Function Approximation with an Oracle）
+#### 1. 已知价值函数（假设）（Value Function Approximation with an Oracle）
 
 若假设已知真实的价值函数，则价值函数估计类似于监督学习的方法，计算真值（label）和输出值（output）的误差即可。
 
@@ -76,7 +76,7 @@ $$
 
 更新过程即为上述梯度下降算法过程。
 
-> 1. 使用特征向量描述状态（Describe States by Feature Vectors）
+##### 1. 使用特征向量描述状态（Describe States by Feature Vectors）
 
 使用特征向量来表征状态是非常常见的一种方法，它可以在一个较复杂的系统中，提炼出状态，其表达式为：
 
@@ -84,7 +84,7 @@ $$
 \mathbb{x}(s)=\Big(\mathbb{x_1(s)},\mathbb{x_2(s)},\cdots,\mathbb{x_n(s)}\Big)^T
 $$
 
-> 1. 线性价值函数近似（已知真实值）（Linear Value Function Approximation with an Oracle）
+##### 2. 线性价值函数近似（已知真实值）（Linear Value Function Approximation with an Oracle）
 
 考虑在已知真实的价值函数的条件下，使用线性函数来估计价值函数。
 
@@ -97,10 +97,10 @@ $$
 2. 目标函数采用MSE定义，是一个关于参数$\omega$的二元式：
 
 $$
-\begin{align}
+\begin{aligned}
 J(\omega)&=E_\pi[\Big(V^{\pi}(s)-\hat{V}(s,\omega)\Big)^2] \\
 &=E_\pi[\Big(V^{\pi}(s)-\mathbb{x(s)}^T\omega\Big)^2]
-\end{align}
+\end{aligned}
 $$
 
 3. 更新，计算出参数$\omega$的更新值：
@@ -136,7 +136,7 @@ $$
 
 因此，此时有$\hat{V}(s_k,\omega)=\omega_k$。
 
-> 1. 不知价值函数（Without Oracle）（Value Function Approximation without Oracle）
+#### 2. 不知价值函数（Without Oracle）（Value Function Approximation without Oracle）
 
 首先来回顾一下无模型的预测。在无模型的预测中：
 
@@ -222,14 +222,14 @@ $$
 
 ### 2. 价值函数近似的控制（VAF Control）
 
-> 1. 广义策略迭代（Generalized Policy Iteration）
+##### 1. 广义策略迭代（Generalized Policy Iteration）
 
 广义策略迭代的核心为：近似$Q$函数，其步骤仍分为两个部分，即：
 
 1. 策略评估：使用近似的策略评估即$\hat{Q}(.,.,\omega)\approx{Q^\pi}$
 2. 策略提升：使用$\epsilon$-greedy来做策略提升
 
-> 2. 已知动作-状态价值函数（假设）（Value Function Approximation Control with an Oracle）
+##### 2. 已知动作-状态价值函数（假设）（Value Function Approximation Control with an Oracle）
 
 在已知$Q^{\pi}$函数的情况下：
 
@@ -251,7 +251,7 @@ $$
 \Delta{\omega}=\alpha(Q^\pi(s,a)-\hat{Q}(s,a,\omega))\nabla_\omega\hat{Q}(s,a,\omega)
 $$
 
-> 3. 线性动作-状态价值函数近似（Linear Action-Value Function Approximation）
+##### 3. 线性动作-状态价值函数近似（Linear Action-Value Function Approximation）
 
 与线性状态价值函数估计类似，使用特征向量来构造$Q$函数，并使用sGD来更新参数$\omega$，即：
 
@@ -273,7 +273,7 @@ $$
 \Delta\omega=\alpha(Q^\pi(s,a,\omega)-\hat{Q}(s,a))\mathbb{x}(s,a)
 $$
 
-> 4. 不知动作-状态价值函数（Value Function Approximation Control without Oracle）
+##### 4. 不知动作-状态价值函数（Value Function Approximation Control without Oracle）
 
 同预测时类似，当我们不知道在策略$\pi$下的动作-状态函数时，我们将目标值替换为收益和，并放入循环中迭代，以达到收敛。
 
@@ -284,7 +284,7 @@ $$
     1. Sarsa
     2. Q-learning
 
-> 5. 广义蒙特卡洛控制（Generalized Monte Carlo Control）
+##### 5. 广义蒙特卡洛控制（Generalized Monte Carlo Control）
 
 使用累计的衰减的幕收益和$G_t$来作为目标，故更新表达式如下：
 
@@ -292,7 +292,7 @@ $$
 \Delta\omega=\alpha(\textcolor{red}{G_t}-\hat{Q}(s_t,a_t))\nabla_\omega\hat{Q}(s_t,a_t,\omega)
 $$
 
-> 6. 广义TD-learning控制（Generalized TD-Learning Control）
+##### 6. 广义TD-learning控制（Generalized TD-Learning Control）
 
 基于贝尔曼期望方程，可以得到Sarsa算法的更新表达式为：
 
@@ -327,7 +327,7 @@ Reapeat(for each episode):
         a = a_
 ```
 
-> 7. 几种价值函数近似的控制方法的收敛情况（Convergence with TD and MC control）
+##### 7. 几种价值函数近似的控制方法的收敛情况（Convergence with TD and MC control）
 
 - TD方法总结
 
@@ -345,7 +345,7 @@ Reapeat(for each episode):
 
 其中，√表示全局最优，（√）表示大致的全局最优，×表示可能不收敛
 
-> 8. 强化学习训练时的死亡三角（The Deadly Triad in Reinforcement Learning）
+##### 8. 强化学习训练时的死亡三角（The Deadly Triad in Reinforcement Learning）
 
 在强化学习中，有三方面因素可能导致训练时的不稳定和不收敛。
 
@@ -361,7 +361,7 @@ Reapeat(for each episode):
 
 离轨学习值的是使用一个行为策略（即一个分布）的数据来训练另外一个目标策略。因此也引入了不确定因素。
 
-> 9. 批量强化学习（Batch Reinforcement Learning）
+##### 9. 批量强化学习（Batch Reinforcement Learning）
 
 上述的每执行一步就做一次梯度下降更新的方法很简单，但是它不高效。为此引入了基于批量数据的方法来做价值函数近似。具体以价值函数近似的预测过程为例：
 
@@ -374,10 +374,10 @@ $$
 则目标为：找到最优的参数$\omega^*$来最好地拟合数据集合$D$。因此$\omega^*$的计算表达式为：
 
 $$
-\begin{align}
+\begin{aligned}
 \omega^*&=\arg\min_{\omega}\mathbb{E}[(V^\pi-\hat{V}(s,\omega))^2] \\
 &=\arg\min_{\omega}\sum_{t=1}^T{(V_t^\pi-\hat{V}(s_t,\omega))^2}
-\end{align}
+\end{aligned}
 $$
 
 但是一个很显然的问题在于，这样选择数据的方式选出来的数据的关联性很强，不适合于训练。因此，考虑从数据集合中随机选取一定批量大小（batch-size）的数据来做训练。其操作步骤为：
@@ -400,11 +400,11 @@ $$
 \omega^{LS}=\arg\min_{w}\sum_{t=1}^T(V_t^\pi-\hat{V}(s,\omega))^2
 $$
 
-> 10. 线性与非线性价值函数近似的比较（Comparison Between Linear and Non-Linear Function Approximation）
+##### 10. 线性与非线性价值函数近似的比较（Comparison Between Linear and Non-Linear Function Approximation）
 
 线性价值函数近似在给定正确的特征集的条件下表现很好，但是它有一个缺点就是需要人类手动来设计特征集。因此，一种可以替代的近似方式为直接学习状态而不需要特别地设置特征。深度神经网络可以很好地做到这一点，且后续基于卷积神经网络地价值函数近似可以实现端到端地特征提取与训练，比较适用。因此，下面将主要讨论利用深度神经网络来近似价值函数，也就是深度强化学习（Deep Reinforcement Learning）。
 
-> 11. 深度神经网络（Deep Neural Network）
+##### 11. 深度神经网络（Deep Neural Network）
 
 深度神经网络的图示如下：
 
@@ -454,7 +454,7 @@ $$
 \rm{update=stepsize\times{(prediction\_error\times}gradient)}\times{input}
 $$
 
-> 12. 卷积神经网络（Convolution Neural Network）
+##### 12. 卷积神经网络（Convolution Neural Network）
 
 卷积神经网络的图示如下：
 
@@ -518,7 +518,7 @@ $$
 out(N_i, C_{out_j})=bias(C_{out_j})+\sum^{C_{in}-1}_{k=0}weight(C{out_j},k)\bigotimes input(N_i,k)
 $$
 
-> 13. 深度强化学习简介（Deep Reinforcement Learning）
+##### 13. 深度强化学习简介（Deep Reinforcement Learning）
 
 深度强化学习是机器学习和人工智呢领域的前沿方向。它使用深度神经网络来表示：
 
@@ -536,7 +536,7 @@ $$
     2. 自举
     3. 离轨学习
 
-> 14. Deep Q-network（DQN）
+##### 14. Deep Q-network（DQN）
 
 DQN是Deepmind在2015年发表在nature上的一个算法，它使用神经网络来近似动作-状态价值函数即$Q$函数，在雅达利游戏上达到了专业玩家的水平。
 
@@ -560,7 +560,7 @@ DQN是Deepmind在2015年发表在nature上的一个算法，它使用神经网�
 
 DQN使用两个神经网络来进行训练，一个用来表示目标网络，另一个是当前的评估网络，目标网络的参数的更新会慢于当前的评估网络，这样target会更稳定。
 
-#### 经验重放（experience replay）
+##### 1. 经验重放（experience replay）
 
 为了减小样本数据之间的相关性，DQN构造了一个存储转移关系的缓冲容器$D$，即:
 
@@ -597,7 +597,7 @@ $$
 \Delta{\omega}={\alpha(\rm{TD\_target}-\hat{Q}(s,a,\omega))}\nabla_\omega\hat{Q(s,a,\omega)}
 $$
 
-### 固定目标（Fixed Target）
+##### 2. 固定目标（Fixed Target）
 
 由于TD-target中含有正在优化的参数$\omega$，因此带来了不确定性，会导致训练结果不稳定。为了训练的时候更稳定，需要固定在TD-target中的参数。
 
@@ -650,7 +650,7 @@ $$
 
 而固定后，可以看作猫比老鼠跑得快，更容易追上老鼠。
 
-> 15. DQN算法的总结（Summary on DQN）
+#### 15. DQN算法的总结（Summary on DQN）
 
 1. DQN使用了两个技巧——经验重放和固定目标
 2. 存储数据：将转移关系元组$(s_t,a_t,r_t,s_{t+1})$存入缓冲器容器$D$中（D可以是deque或者list）
