@@ -209,7 +209,7 @@ $$
 
 广义策略迭代包括两个同时进行的相互作用的流程，一个做策略评估，一个做策略提升，但两者可以以任意的流程交替进行。当然，在强化学习中，广义策略迭代值代所有让策略评估和策略提升相互作用的一般思路。其示意图如下：
 <center>
-    <img="/images/posts/blog/image-20210409151640707.png" alt="picture not found" style="zoom:100%;"/>
+    <img src="/images/posts/blog/image-20210409151640707.png" alt="picture not found" style="zoom:100%;"/>
     <br>
 </center>
 
@@ -443,7 +443,7 @@ $$
 
 两种算法的迭代备份图如下：
 <center>
-    <img="/images/posts/blog/image-20210409151111429.png" alt="picture not found" style="zoom:100%;"/>
+    <img src="/images/posts/blog/image-20210409151111429.png" alt="picture not found" style="zoom:100%;"/>
     <br>
 </center>
 
@@ -502,7 +502,7 @@ $$
 
 时序差分学习随搜索深度与宽度变化情况如下图所示：
 <center>
-    <img="/images/posts/blog/image-20210409153454873.png" alt="picture not found" style="zoom:100%;"/>
+    <img src="/images/posts/blog/image-20210409153454873.png" alt="picture not found" style="zoom:100%;"/>
     <br>
 </center>
 
