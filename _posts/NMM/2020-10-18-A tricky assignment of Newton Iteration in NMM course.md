@@ -40,6 +40,7 @@ $$
 由$p$是$f(x)$的$m$重零点，因此我们可设$f(x)=(x-p)^{m}g(x)$，其中$g(x)$满足$g(p)\ne0$。
 
 对$\varphi(x)$求一阶导有：
+
 $$
 \begin{aligned}
 \varphi'(x)&=1-\lambda(\frac{[f'(x)]^2-f(x)f''(x)}{[f'(x)]^2})\\
@@ -47,11 +48,15 @@ $$
 \end{aligned}
 \tag{2}
 $$
+
 由于$f^{(j)}(p)=0$，其中$j\in[0,m-1]$。因此，$\varphi'(p)$中最后一项分子分母均为$0$，故必须表示为如下极限形式：
+
 $$
 \varphi'(p)=1-\lambda+\lambda\lim_{x\to{p}}\frac{f(x)f''(x)}{[f'(x)]^2}\tag{3}
 $$
+
 对$f(x)$分别求一阶和二阶导有：
+
 $$
 \begin{aligned}
 f'(x)&=m(x-p)^{m-1}g(x)+(x-p)^{m}g'(x)\\
@@ -64,7 +69,9 @@ f''(x)&=m[(m-1)(x-p)^{m-2}g(x)+(x-p)^{m-1}g'(x)]+m(x-p)^{m-1}g'(x)+(x-p)^{m}g''(
 \end{aligned}
 \tag{4}
 $$
+
 将式(4)代入式(3)，并将分子分母约分和代入，有：
+
 $$
 \begin{aligned}
 \varphi'(p)&=1-\lambda+\lambda\lim_{x\to{p}}\frac{g(x)[m(m-1)g(x)+2m(x-p)g'(x)+(x-p)^2g''(x)]}{[mg(x)+(x-p)g'(x)]^2}\\
@@ -74,6 +81,7 @@ $$
 \end{aligned}
 \tag{5}
 $$
+
 我们令$\varphi'(p)=0$，即可得到$\lambda=m$。
 
 因此，当取$\lambda=m$时，改进的$Newton$下山法至少是二阶收敛的。
