@@ -117,14 +117,14 @@ class Agent():
        	
        	Args:
             gamma : the discounted factor in Bellman Equation
-       		lr : learning rate
-       		input_dims : the number of states
-       		batch_size : the size of one batch
-       		n_actions : the number of actions
-       		max_mem_size : the size of replay buffer
-       		eps_end : the minimum value of epislon in epsilon-greedy trick
-       		eps_dec : the value of epsilon decay after each step(linear decay)
-       		target_freq : the period for updating the parameters of the target network
+            lr : learning rate
+            input_dims : the number of states
+            batch_size : the size of one batch
+            n_actions : the number of actions
+            max_mem_size : the size of replay buffer
+            eps_end : the minimum value of epislon in epsilon-greedy trick
+            eps_dec : the value of epsilon decay after each step(linear decay)
+            target_freq : the period for updating the parameters of the target network
         """
         self.gamma = gamma
         self.epsilon = epsilon
