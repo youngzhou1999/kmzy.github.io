@@ -48,7 +48,7 @@ class DeepQNetwork(nn.Module):
         value of each action.  
         
         Args:
-        	lr : learning rate
+            lr : learning rate
             input_dim : the  number of states
         	fc1_dims : the number of neurons in the first fc layer
         	fc2_dims : the number of neurons in the second fc layer
@@ -76,7 +76,7 @@ class DeepQNetwork(nn.Module):
         calculate the ouput of the deep q network
         
         Args:
-        	state : current state as input
+            state : current state as input
         """
         x = F.relu(self.fc1(state))
         x = F.relu(self.fc2(x))
