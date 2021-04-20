@@ -49,7 +49,7 @@ class DeepQNetwork(nn.Module):
         
         Args:
         	lr : learning rate
-        	input_dim : the  number of states
+            input_dim : the  number of states
         	fc1_dims : the number of neurons in the first fc layer
         	fc2_dims : the number of neurons in the second fc layer
             n_actions : the number of actions 
