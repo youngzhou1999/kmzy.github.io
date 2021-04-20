@@ -227,7 +227,8 @@ DQN是基于Q-learning，因此使用的是epsilon-greedy策略来选取动作�
 ```python
     def learn(self):
         """
-        sample data of size batch_size from replay buffer, and the ues   them to update the network(s)
+        sample data of size batch_size from replay buffer, and the use
+        them to update the network(s)
         """
         # when data in replay buffer less than batch, just ignore
         if self.mem_cntr < self.batch_size:
