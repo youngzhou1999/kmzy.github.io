@@ -5,6 +5,7 @@ categories: RL
 description: An Example of DQN
 keywords: Reinforcement Learning
 ---
+本文使用pytorch框架实现DQN算法，并使用gym的lunarlander-v2环境来测试DQN的训练效果和收敛情况。结果表明：智能体可以有效地求解该环境，达到收敛。
 
 ## Example of DQN in Pytorch
 

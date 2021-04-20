@@ -5,6 +5,7 @@ categories: RL
 description: Value Function Approximation
 keywords: Reinforcement Learning
 ---
+本文介绍了使用函数来近似强化学习中的值函数的评估与控制过程，主要描述了使用线性函数以及非线性函数（深度神经网络）拟合值函数的方法和求解过程。同时讨论了在函数近似情况下的蒙特卡洛控制和时序差分学习控制，以及简单介绍了深度强化学习和DQN算法。
 
 ## Value Function Approximation
 
