@@ -305,6 +305,7 @@ $$
 $$
 \Delta\omega=\alpha(\textcolor{red}{R_{t+1}+\gamma\max_{a}{\hat{Q}(s_{t+1},a,\omega)}}-\hat{Q}(s,a))\nabla_\omega\hat{Q}(s_t,a_t,\omega)
 $$
+
 以Sarsa算法为例，其算法框架如下：
 
 ```python
