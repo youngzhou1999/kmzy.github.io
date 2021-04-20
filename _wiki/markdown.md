@@ -122,10 +122,10 @@ print 'Hello, World!'
 ### 图片
 
 ```
-![本站favicon](/favico.ico)
+![本站favicon](/favicon.ico)
 ```
 
-![本站favicon](/favico.ico)
+![本站favicon](/favicon.ico)
 
 ### 锚点
 
