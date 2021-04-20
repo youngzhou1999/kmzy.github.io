@@ -577,7 +577,7 @@
 }
 
 .markdown-body pre {
-    word-wrap: normal
+    word-wrap: break-word
 }
 
 .markdown-body pre code,.markdown-body pre tt {

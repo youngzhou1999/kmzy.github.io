@@ -43,7 +43,7 @@ DQN的实现大致可以分为3部分：
 class DeepQNetwork(nn.Module):
     def __init__(self, lr , input_dims, fc1_dims, fc2_dims, n_actions):
         '''
-        initilize the deep q network which has 2 fully connected(fc)   layers and take an input as the number of states and ouput the   value of each action.  
+        initilize the deep q network which has 2 fully connected(fc) layers and take an input as the number of states and ouput the  value of each action.  
         
         Args:
         	lr : learning rate
