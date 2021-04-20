@@ -43,7 +43,7 @@ DQN的实现大致可以分为3部分：
 class DeepQNetwork(nn.Module):
     def __init__(self, lr , input_dims, fc1_dims, fc2_dims, n_actions):
         '''
-        initilize the deep q network which has 2 fully connected(fc) layers and take an input as the number of states and ouput the value of each action.
+        initilize the deep q network which has 2 fully connected(fc)   layers and take an input as the number of states and ouput the   value of each action.  
         
         Args:
         	lr : learning rate
@@ -224,7 +224,7 @@ DQN是基于Q-learning，因此使用的是epsilon-greedy策略来选取动作�
 ```python
     def learn(self):
         """
-        sample data of size batch_size from replay buffer, and the ues them to update the network(s)
+        sample data of size batch_size from replay buffer, and the ues   them to update the network(s)
         """
         # when data in replay buffer less than batch, just ignore
         if self.mem_cntr < self.batch_size:
