@@ -116,7 +116,7 @@ class Agent():
         initialize the agent
        	
        	Args:
-       		gamma : the discounted factor in Bellman Equation
+            gamma : the discounted factor in Bellman Equation
        		lr : learning rate
        		input_dims : the number of states
        		batch_size : the size of one batch
@@ -173,7 +173,7 @@ class Agent():
         store tuple (s_t,a_t,r_t,s_{t+1},done) to replay buffer
         
         Args:
-        	state : s_t
+            state : s_t
             action : a_t
             reward : r_t
             state_ : s_{t+1}
@@ -201,7 +201,7 @@ DQN是基于Q-learning，因此使用的是epsilon-greedy策略来选取动作�
         choose an action in current state by using epsilon-greedy
         
         Args:
-        	observation : current state
+            observation : current state
         """
         if np.random.random() > self.epsilon:
             # choose the best action
@@ -357,7 +357,6 @@ if __name__ == '__main__':
 </center>
 每一幕的回报：
 
-![image-20210414153911852](/image-20210414153911852.png)
 <center>
     <img src="/images/posts/blog/image-20210414153911852.png" alt="picture not found" style="zoom:100%;"/>
     <br>
