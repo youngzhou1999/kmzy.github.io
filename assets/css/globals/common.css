@@ -552,7 +552,7 @@
     padding: 0;
     margin: 0;
     font-size: 100%;
-    word-break: break-word;
+    word-break: normal;
     white-space: pre;
     background: 0 0;
     border: 0
@@ -573,13 +573,11 @@
 
 .markdown-body .highlight pre {
     margin-bottom: 0;
-    white-space: pre-wrap;
     word-break: normal
 }
 
 .markdown-body pre {
-    white-space: pre-wrap;
-    word-wrap: break-word
+    word-wrap: normal
 }
 
 .markdown-body pre code,.markdown-body pre tt {
@@ -589,8 +587,7 @@
     margin: 0;
     overflow: initial;
     line-height: inherit;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+    word-wrap: normal;
     background-color: transparent;
     border: 0
 }
