@@ -573,10 +573,12 @@
 
 .markdown-body .highlight pre {
     margin-bottom: 0;
-    word-break: break-word
+    white-space: pre-wrap;
+    word-break: normal
 }
 
 .markdown-body pre {
+    white-space: pre-wrap;
     word-wrap: break-word
 }
 
