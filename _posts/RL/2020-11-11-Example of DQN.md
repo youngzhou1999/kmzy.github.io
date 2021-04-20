@@ -131,7 +131,7 @@ class Agent():
         self.eps_min = eps_end
         self.eps_dec = eps_dec
         self.lr = lr
-		# get action space
+        # get action space
         self.action_space = [i for i in range(n_actions)]   # for epsilon-greedy
 
         self.batch_size = batch_size
@@ -141,13 +141,13 @@ class Agent():
         # the counter of steps
         self.iter_cntr = 0
         self.target_update_freq = target_update_freq
-		# evaluation network
+        # evaluation network
         self.Q_eval = DeepQNetwork(self.lr, input_dims=input_dims, 
                             fc1_dims=256, fc2_dims=256, n_actions=n_actions)
-		# target network
+        # target network
         self.Q_target = DeepQNetwork(self.lr, input_dims=input_dims,
-                            fc1_dims=256, fc2_dims=256, n_actions=n_actions) 
-		# replay buffer(use list for every element)
+                            fc1_dims=256, fc2_dims=256, n_actions=n_actions)
+        # replay buffer(use list for every element)
         self.state_memory = np.zeros((self.mem_size, *input_dims), dtype=np.float32)
         self.action_memory = np.zeros(self.mem_size, dtype=np.int32)
         self.reward_memory = np.zeros(self.mem_size, dtype=np.int32)
@@ -231,7 +231,7 @@ DQN是基于Q-learning，因此使用的是epsilon-greedy策略来选取动作�
         # when data in replay buffer less than batch, just ignore
         if self.mem_cntr < self.batch_size:
             return
-		# release all old gradients at first
+        # release all old gradients at first
         self.Q_eval.optimizer.zero_grad()
 		
         max_mem = min(self.mem_size, self.mem_cntr)
@@ -253,9 +253,9 @@ DQN是基于Q-learning，因此使用的是epsilon-greedy策略来选取动作�
         q_next = self.Q_target.forward(new_state_batch)
         # terminal states has a value of 0
         q_next[terminal_batch] = 0.0
-		# build q_target : r + max_{a}(Q_target(s_{t+1}, a))
+        # build q_target : r + max_{a}(Q_target(s_{t+1}, a))
         q_target = reward_batch + self.gamma * T.max(q_next, dim=1)[0]
-		# build q-error : q_target - q(s,a) 
+        # build q-error : q_target - q(s,a) 
         loss = self.Q_eval.loss(q_target, q_eval).to(self.Q_eval.device)
         # uodate q_eval network
         loss.backward()
@@ -314,7 +314,7 @@ if __name__ == '__main__':
     target_score = 250
     avg_score = 0
     episode = 0
-	# training
+    # training
     while avg_score < target_score:
         score = 0
         done = False
