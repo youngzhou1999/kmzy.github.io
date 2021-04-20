@@ -573,7 +573,7 @@
 
 .markdown-body .highlight pre {
     margin-bottom: 0;
-    word-break: normal
+    word-break: break-word
 }
 
 .markdown-body pre {
